@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd"
+default-init-method="init" default-destroy-method="destroy">
+
+    <bean id="person" class="com.webbfontaine.springtraining.Person" scope="prototype"
+          init-method="onCreate" destroy-method="onDestroy" factory-method="getInstance">
+        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="name" value="Oro"/>
+        <constructor-arg name="address" ref="address"></constructor-arg>
+        <property name="taxId" value="123"/>
+        <!--<property name="address" ref="address"/>-->
+    </bean>
+
+    <bean id="address" class="com.webbfontaine.springtraining.Address" init-method="init" destroy-method="destroy">
+        <property name="street" value="Church Lane"/>
+        <property name="postcode" value="9876"/>
+    </bean>
+
+    <bean id="person2" class="com.webbfontaine.springtraining.Person" factory-bean="personFactory"
+          factory-method="createPerson" init-method="onCreate" destroy-method="onDestroy">
+        <constructor-arg name="id" value="432"/>
+        <constructor-arg name="name" value="Personsample" />
+    </bean>
+
+   <bean id="address2" class="com.webbfontaine.springtraining.Address" factory-bean="addressFactory"
+          factory-method="makeAddress">
+
+       <property name="street" value="street factory"/>
+       <property name="postcode" value="postcode Factory"/>
+   </bean>
+
+    <bean id="address3" class="com.webbfontaine.springtraining.Address" p:street="p street"
+          p:postcode="p post"/>
+
+
+    <bean id="addressFactory" class="com.webbfontaine.springtraining.AddressFactory"/>
+
+    <bean id="personFactory" class="com.webbfontaine.springtraining.PersonFactory">
+
+    </bean>
+
+
+    <!-- Fruit Basket -->
+
+    <bean name="fruitBasket" class="com.webbfontaine.springtraining.FruitBasket">
+        <constructor-arg name="name" value="Golden Baket"/>
+        <constructor-arg index="1">
+            <list>
+                <value>Apple</value>
+                <value>Orange</value>
+                <value>Banana</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+
+</beans>
