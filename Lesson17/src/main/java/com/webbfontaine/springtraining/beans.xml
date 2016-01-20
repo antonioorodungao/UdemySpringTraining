@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="pig" class="com.webbfontaine.springtraining.Animal">
+        <constructor-arg index="0" value="Mark"/>
+        <constructor-arg index="1" value="pig"/>
+    </bean>
+
+    <bean id="elephant" class="com.webbfontaine.springtraining.Animal">
+
+        <constructor-arg index="0" value="Joseph"/>
+        <constructor-arg index="1" value="elephant"/>
+    </bean>
+
+    <bean id="bird" class="com.webbfontaine.springtraining.Animal">
+
+        <constructor-arg index="0" value="Bard"/>
+        <constructor-arg index="1" value="eagle"/>
+    </bean>
+
+    <bean id="snake" class="com.webbfontaine.springtraining.Animal">
+
+        <constructor-arg index="0" value="Lisa"/>
+        <constructor-arg index="1" value="snake"/>
+    </bean>
+
+    <bean id="jungle" class="com.webbfontaine.springtraining.Jungle">
+
+
+        <property name="largest" ref="elephant"/>
+        <property name="animals">
+            <list>
+                <ref bean="pig"/>
+                <ref bean="bird"/>
+                <ref bean="snake"/>
+            </list>
+        </property>
+        <property name="foods">
+            <props>
+                <prop key="banana">Monkey</prop>
+                <prop key="egg">Snake</prop>
+            </props>
+        </property>
+        <property name="plants">
+            <map>
+                <entry key="fern" value-ref="fern"/>
+                <entry key="moss" value-ref="moss"/>
+            </map>
+        </property>
+
+
+    </bean>
+
+    <bean id="fern" class="com.webbfontaine.springtraining.Plant">
+        <constructor-arg value="Fern"/>
+    </bean>
+
+    <bean id="moss" class="com.webbfontaine.springtraining.Plant">
+
+        <constructor-arg value="moss"/>
+    </bean>
+</beans>
